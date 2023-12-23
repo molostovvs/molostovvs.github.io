@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://concreteecho.github.io/"
+baseurl = "https://molostovvs.github.io/"
 languageCode = "ru-ru"
 paginate = 5
 title = "Молостов Виктор | Блог"
