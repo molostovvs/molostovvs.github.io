@@ -2,7 +2,7 @@
 baseurl = "https://molostovvs.github.io/"
 languageCode = "ru-ru"
 paginate = 5
-title = "Молостов Виктор | Блог"
+title = "Молостов Виктор | Обо всём"
 
 # Theme i18n support
 defaultContentLanguage = "ru"
