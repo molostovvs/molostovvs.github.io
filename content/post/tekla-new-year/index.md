@@ -1,6 +1,7 @@
 ---
 title: Новый год в Tekla
 description: Поднимаем коллегам настроение перед новым годом за 30 минут
+slug: tekla-new-year
 date: 2023-12-31 00:00:00+0000
 math: false
 
