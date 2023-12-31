@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tekla on Молостов Виктор | Обо всём</title><link>https://molostovvs.github.io/categories/tekla/</link><description>Recent content in tekla on Молостов Виктор | Обо всём</description><generator>Hugo -- gohugo.io</generator><language>ru-ru</language><lastBuildDate>Sun, 31 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://molostovvs.github.io/categories/tekla/index.xml" rel="self" type="application/rss+xml"/><item><title>Новый год в Tekla</title><link>https://molostovvs.github.io/p/tekla-new-year/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://molostovvs.github.io/p/tekla-new-year/</guid><description>&lt;img src="https://molostovvs.github.io/p/tekla-new-year/tree.png" alt="Featured image of post Новый год в Tekla" />&lt;h1 id="что-за-конец-года-без-выдачи-документации">Что за конец года без выдачи документации?&lt;/h1>
+&lt;p>В это время особенно важно поддерживать коллег-инженеров. Можно отправить всем старое и скучное текстовое сообщение (но даже думать над текстом этого сообщения было бы скучно), а можно придумать что-то необычное и простое, как например шалость с лентой команд. Для этого пришлось расчехлить тяжелую артиллерию: много кнопок на ленте, Paint и пиксель-арт. Некоторые уже догадались: я сделал большое пиксельное &amp;ldquo;С новым годом!&amp;rdquo;!&lt;/p>
+&lt;p>Процесс был одновременно веселым и трогательным, а результат обещал быть очень милым. Если честно, я чувствовал себя цифровым Дедом Морозом, только в руках была мышка, которая ставила пиксели, а не посох, который обычно рисует узоры на окнах. Палитра состояла всего из 4 цветов, которые по очереди применялись к каждой букве, чтобы показать дух праздника (ну и сделать отсылку к гирлянде, конечно). Итогом моего творчества стала такая заготовка, из которой потом были созданы иконки 16x16 пикселей.&lt;/p>
+&lt;p>&lt;img src="https://molostovvs.github.io/p/tekla-new-year/new-year.png"
+width="272"
+height="17"
+srcset="https://molostovvs.github.io/p/tekla-new-year/new-year_hub7ab6beaf13aa2302cd4337d9cf01a14_2110_480x0_resize_box_3.png 480w, https://molostovvs.github.io/p/tekla-new-year/new-year_hub7ab6beaf13aa2302cd4337d9cf01a14_2110_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Пиксельная заготовка для кнопок из Paint"
+class="gallery-image"
+data-flex-grow="1600"
+data-flex-basis="3840px"
+>&lt;/p>
+&lt;p>И вот во что они превратились в Tekla:&lt;/p>
+&lt;p>&lt;img src="https://molostovvs.github.io/p/tekla-new-year/result.png"
+width="486"
+height="30"
+srcset="https://molostovvs.github.io/p/tekla-new-year/result_hubede6737288937345beba97bed4776af_3550_480x0_resize_box_3.png 480w, https://molostovvs.github.io/p/tekla-new-year/result_hubede6737288937345beba97bed4776af_3550_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Лента с пиксельным поздравлением"
+class="gallery-image"
+data-flex-grow="1620"
+data-flex-basis="3888px"
+>&lt;/p>
+&lt;p>Фон оставил белым по совету супруги, у которой белые рамки ассоциировались с подарочными коробками.&lt;/p>
+&lt;h2 id="неожиданный-подарок-от-tekla">Неожиданный подарок от Tekla&lt;/h2>
+&lt;p>Но позже шалость получила продолжение! Оказалось, что Tekla отказывается праздновать новый год. Для одного счастливчика (или несчастливчика?) &amp;ldquo;Новый год&amp;rdquo; превратился в &amp;ldquo;Сома&amp;rdquo;:&lt;/p>
+&lt;p>&lt;img src="https://molostovvs.github.io/p/tekla-new-year/something-went-wrong.png"
+width="337"
+height="30"
+srcset="https://molostovvs.github.io/p/tekla-new-year/something-went-wrong_hufbde06552dc2316719722ad2ac3d2a9a_6900_480x0_resize_box_3.png 480w, https://molostovvs.github.io/p/tekla-new-year/something-went-wrong_hufbde06552dc2316719722ad2ac3d2a9a_6900_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Неожиданное появление Сома"
+class="gallery-image"
+data-flex-grow="1123"
+data-flex-basis="2696px"
+>&lt;/p>
+&lt;p>Изображения для кнопок загрузились не все, поэтому счастливчик смотрел на веселого и странного&amp;quot;Сома&amp;quot;. Вероятно это как-то связано с тем, что иконки для команд хранились в сетевом хранилище и к ним обращалось примерно 30 экземпляров Tekla одновременно.&lt;/p>
+&lt;p>Вот так, даже посреди серьезной работы одна шалость, созданная человеком, может превратиться в другую, которую создает нам программа. А в конце года уже пора расслабляться, принимать неожиданности и помнить - что смех лучшее лекарство, особенно в канун пиксельного нового года!&lt;/p>
+&lt;p>&lt;strong>Всех с новым годом!&lt;/strong>&lt;/p></description></item></channel></rss>
