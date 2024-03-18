@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>til on Молостов Виктор | Обо всём</title><link>https://molostovvs.github.io/categories/til/</link><description>Recent content in til on Молостов Виктор | Обо всём</description><generator>Hugo -- gohugo.io</generator><language>ru-ru</language><lastBuildDate>Sun, 17 Mar 2024 18:00:00 +0000</lastBuildDate><atom:link href="https://molostovvs.github.io/categories/til/index.xml" rel="self" type="application/rss+xml"/><item><title>Warpd и русская раскладка на linux</title><link>https://molostovvs.github.io/p/warpd-layout-fix/</link><pubDate>Sun, 17 Mar 2024 18:00:00 +0000</pubDate><guid>https://molostovvs.github.io/p/warpd-layout-fix/</guid><description>&lt;img src="https://molostovvs.github.io/p/warpd-layout-fix/cover.png" alt="Featured image of post Warpd и русская раскладка на linux" />&lt;h1 id="warpd">warpd&lt;/h1>
+&lt;h2 id="что-такое-warpd">Что такое warpd?&lt;/h2>
+&lt;p>Из описания репозитория на github: интерфейс управления мышью с помощи клавиатуры. Более подробно с примерами использования можно ознакомиться тут: &lt;a class="link" href="https://github.com/rvaiya/warpd" target="_blank" rel="noopener"
+>репозиторий на GitHub&lt;/a>&lt;/p>
+&lt;p>На 17.03.2024 репозиторий на гитхабе имеет 2700 звездочек, а последний коммит в мастер был 10 месяцев назад. Есть несколько issues открытых с июня 2023, большинство из которых относится к работе warpd на Windows. То есть проект взрослый, и как говорится feature-complete.&lt;/p>
+&lt;h2 id="проблема-с-раскладками">Проблема с раскладками&lt;/h2>
+&lt;p>Если на компьютере используется несколько раскладок, то warpd берет из них ту, которая выводится в &lt;code>localectl&lt;/code>. Это приводит к тому, что если в системе установлена первой раскладка на русском (как это было в моем случае), то &lt;code>warpd --hint&lt;/code> не работает совсем. А если пользователь использует в том числе qwerty и Dvorak, как в &lt;a class="link" href="https://github.com/rvaiya/warpd/issues/189" target="_blank" rel="noopener"
+>этом issue&lt;/a>, то при нажатии на одну кнопку warpd в режиме &lt;em>hint&lt;/em> воспринимает ее как другую. Этот issue помог мне понять, почему у меня warpd не работал совсем.&lt;/p>
+&lt;h2 id="решение">Решение&lt;/h2>
+&lt;p>Решение оказалось простым - исправить скрипт, который устанавливает раскладки при запуске i3wm (оконный менеджер, которым я пользуюсь).&lt;/p>
+&lt;p>Скрипт до:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">setxkbmap -layout ru,us -variant ,dvorak
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>И скрипт после:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">setxkbmap -layout us,ru -variant dvorak,
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>После этого изменения &lt;em>hint&lt;/em> режим warpd работает как и должен.&lt;/p></description></item></channel></rss>

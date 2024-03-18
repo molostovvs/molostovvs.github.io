@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Headless on Молостов Виктор | Обо всём</title><link>https://molostovvs.github.io/tags/headless/</link><description>Recent content in Headless on Молостов Виктор | Обо всём</description><generator>Hugo -- gohugo.io</generator><language>ru-ru</language><lastBuildDate>Wed, 21 Feb 2024 07:00:00 +0000</lastBuildDate><atom:link href="https://molostovvs.github.io/tags/headless/index.xml" rel="self" type="application/rss+xml"/><item><title>Headless? Ты что, голову дома забыл?</title><link>https://molostovvs.github.io/p/tekla-headless-p1/</link><pubDate>Wed, 21 Feb 2024 07:00:00 +0000</pubDate><guid>https://molostovvs.github.io/p/tekla-headless-p1/</guid><description>&lt;img src="https://molostovvs.github.io/p/tekla-headless-p1/cover.png" alt="Featured image of post Headless? Ты что, голову дома забыл?" />&lt;h2 id="bimpublisher-как-автоматизация">BimPublisher как автоматизация&lt;/h2>
+&lt;p>Для Tekla есть самый популярный вариант полной автоматизации - это &lt;a class="link" href="https://warehouse.tekla.com/#/catalog/details/u1ea375b5-0819-40e4-8105-5f3d74474352" target="_blank" rel="noopener"
+>BimPublisher&lt;/a>. Из названия понятно, что BimPublisher предназначен для публикации чего-то. И его даже можно использовать для других задач, не относящихся к экспорту. Для этих задач мы можем использовать макросы, которые запускаются перед экспортом (в BimPublisher это &lt;em>Run these macros before exports&lt;/em>) и после экспорта (в BimPublisher это &lt;em>Run these macros after exports&lt;/em>). Пример такой автоматизации можно найти &lt;a class="link" href="https://support.tekla.com/article/automatically-update-your-shared-model" target="_blank" rel="noopener"
+>в статье из раздела Tekla User Assistance&lt;/a> про автоматическое обновление моделей из Model Sharing.&lt;/p>
+&lt;h2 id="проблема-bimpublisher">Проблема BimPublisher&lt;/h2>
+&lt;p>Почему бы тогда не остановится на BimPublisher и пользоваться им для наших задач, зачем что-то придумывать? Проблема в том, что BimPublisher запускает Tekla с UI, который нужен человеку. Но у нас-то не будет никакого человека, который будет пользоваться Tekla, Tekla будет использоваться программой - т.е. нашим скриптом. Следовательно UI нам не нужен, но запуск Tekla и открытие модели большей частью состоит из загрузки UI.&lt;/p>
+&lt;h2 id="headless-tekla">Headless Tekla&lt;/h2>
+&lt;p>Решением проблемы является Headless Tekla, пример можно найти в &lt;a class="link" href="https://github.com/TrimbleSolutionsCorporation/HeadlessTeklaStructuresExample" target="_blank" rel="noopener"
+>официальном репозитории Trimble на GitHub&lt;/a>. Headless Tekla находится в сборке &lt;code>Tekla.Structures.Service&lt;/code>, а ее API не выпущен официально, поэтому в справке отсутствует документация. Но благодаря примеру можно быстро разобраться что к чему. Немного изменю файл &lt;code>Program.cs&lt;/code> из примера и приведу его здесь с комментариями:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">var&lt;/span> &lt;span class="n">binDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s">$@&amp;#34;C:\TeklaStructures\2022.0\bin&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Подписка на событие, которое возникает, когда не найдена dll. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Поскольку при запуске Tekla нужно много dll из папки /bin/, &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// мы их не копируем к нашему исполняемому файлу, &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// а просто указываем где .Net Framework искать dll, &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// которую он не нашел в папке с исполняемым файлом.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">AppDomain&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">CurrentDomain&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">AssemblyResolve&lt;/span> &lt;span class="p">+=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="n">FindAssembly&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">binDir&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Создаем экземпляр headless tekla, в этот момент происходит запуск Tekla&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">using&lt;/span> &lt;span class="nn">var&lt;/span> &lt;span class="n">service&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">TSS&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">TeklaStructuresService&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="n">DirectoryInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">binDir&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;ENGLISH&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="n">FileInfo&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">$@&amp;#34;C:\TeklaStructures\2022.0\Environments\default\env_Default_environment.ini&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="n">FileInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">$@&amp;#34;C:\TeklaStructures\2022.0\Environments\default\role_Steel_Detailer.ini&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">var&lt;/span> &lt;span class="n">modelPath&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s">@&amp;#34;C:\TeklaStructuresModels\test-model&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">service&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Initialize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">DirectoryInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">modelPath&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// После инициализации Tekla нам доступен API&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">WriteLine&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">$&amp;#34;Connected: {new TSM.Model().GetConnectionStatus()}&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">WriteLine&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">$&amp;#34;Model name: {new TSM.Model().GetInfo().ModelName}&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ReadKey&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">return&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">static&lt;/span> &lt;span class="n">Assembly&lt;/span> &lt;span class="n">FindAssembly&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ResolveEventArgs&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">string&lt;/span> &lt;span class="n">binDir&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">var&lt;/span> &lt;span class="n">requestedAssembly&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">AssemblyName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Name&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">var&lt;/span> &lt;span class="n">dllPath&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Path&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Combine&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">binDir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">requestedAssembly&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Name&lt;/span> &lt;span class="p">+&lt;/span> &lt;span class="s">&amp;#34;.dll&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">File&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">dllPath&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">?&lt;/span> &lt;span class="n">Assembly&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">LoadFile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">dllPath&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="k">throw&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArgumentException&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Этот код можно использовать чтобы открыть модель Tekla в headless режиме, после чего можно обращаться к открытой модели с помощью Tekla Open API. В следующей статье рассмотрим какие есть преимущества у этого подхода с точки зрения производительности.&lt;/p></description></item></channel></rss>
